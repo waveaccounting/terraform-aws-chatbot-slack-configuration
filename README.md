@@ -80,5 +80,6 @@ module "chatbot_slack_configuration" {
 | Name | Description |
 |------|-------------|
 | configuration\_arn | The ARN of the Chatbot Slack configuration |
+| stack\_id | The unique identifier for the stack. |
 
 <!--- END_TF_DOCS --->
