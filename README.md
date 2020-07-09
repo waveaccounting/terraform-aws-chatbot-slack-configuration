@@ -1,9 +1,48 @@
 ## Usage
 
-### Add usage examples here
+### Basic Configuration
 
 ```hcl
+module "chatbot_slack_configuration" {
+  source  = "waveaccounting/chatbot-slack-configuration/aws"
+  version = "1.0.0"
 
+  configuration_name = "config-name"
+  iam_role_arn       = "arn:aws:iam::1234567890:role/service-role/AwsChatBot"
+  slack_channel_id   = "ABCDEADF"
+  slack_workspace_id = "I342UFDS"
+
+  sns_topic_arns = [
+    "arn:aws:sns:us-west-1:1234567890:pipeline-notifications"
+  ]
+
+  tags = {
+    Automation     = "Terraform + Cloudformation"
+  }
+}
+```
+
+### Logging all events
+
+```hcl
+module "chatbot_slack_configuration" {
+  source  = "waveaccounting/chatbot-slack-configuration/aws"
+  version = "1.0.0"
+
+  configuration_name = "config-name"
+  iam_role_arn       = "arn:aws:iam::1234567890:role/service-role/AwsChatBot"
+  logging_level      = "INFO"
+  slack_channel_id   = "ABCDEADF"
+  slack_workspace_id = "I342UFDS"
+
+  sns_topic_arns = [
+    "arn:aws:sns:us-west-1:1234567890:pipeline-notifications"
+  ]
+
+  tags = {
+    Automation     = "Terraform + Cloudformation"
+  }
+}
 ```
 
 <!--- BEGIN_TF_DOCS --->
