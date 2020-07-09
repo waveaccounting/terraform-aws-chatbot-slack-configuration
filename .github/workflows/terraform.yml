@@ -24,4 +24,4 @@ jobs:
 
       - name: Run Checkov action
         id: checkov
-        uses: bridgecrewio/checkov-action@v9
+        uses: bridgecrewio/checkov-action@v13
