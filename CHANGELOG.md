@@ -16,7 +16,10 @@ Types of changes:
 
 ## [Unreleased]
 
+## v1.0.0 - 2020-07-09
+
 ### Added
 - Initial release of standalone module
 
-[unreleased]: https://github.com/waveaccounting/<repo>/releases/tag/2.0.0
+[Unreleased]: https://github.com/waveaccounting/terraform-aws-chatbot-slack-configuration/compare/v1.0.0...HEAD
+[v1.0.0]: https://github.com/waveaccounting/terraform-aws-chatbot-slack-configuration/releases/tag/v1.0.0
