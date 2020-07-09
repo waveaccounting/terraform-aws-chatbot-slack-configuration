@@ -34,6 +34,8 @@
 
 ## Outputs
 
-No output.
+| Name | Description |
+|------|-------------|
+| configuration\_arn | The ARN of the Chatbot Slack configuration |
 
 <!--- END_TF_DOCS --->
