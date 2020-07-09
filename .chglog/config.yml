@@ -1,0 +1,41 @@
+# This config file will be used for generating changelog prefill from git commits
+style: github
+template: CHANGELOG.tpl.md
+info:
+  title: CHANGELOG
+  repository_url: https://github.com/waveaccounting/wave-template-terraform-module
+options:
+  commit_groups:
+    group_by: Type
+    sort_by: Title
+    title_maps:
+      feat: Added
+      feature: Added
+      add: Added
+      added: Added
+      chg: Changed
+      change: Changed
+      changed: Changed
+      refactor: Changed
+      dep: Deprecated
+      rem: Removed
+      remove: Removed
+      removed: Removed
+      del: Removed
+      delete: Removed
+      deleted: Removed
+      bugfix: Fixed
+      fix: Fixed
+      sec: Security
+      secure: Security
+      security: Security
+  header:
+    pattern: "^(\\w*)\\:\\s(.*)$"
+    pattern_maps:
+      - Type
+      - Subject
+  notes:
+    keywords:
+      - BREAKING CHANGE
+      - STATE MOVE REQUIRED
+      - STATE MOVES REQUIRED

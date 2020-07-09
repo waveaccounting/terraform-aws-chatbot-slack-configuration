@@ -1,0 +1,10 @@
+# This config file will be used for automatically updating changelog links
+style: github
+template: CHANGELOG_LINKS.tpl.md
+info:
+  repository_url: https://github.com/waveaccounting/wave-template-terraform-module
+options:
+  header:
+    pattern: "^(.*)$"
+    pattern_maps:
+      - Subject
