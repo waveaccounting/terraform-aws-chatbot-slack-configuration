@@ -1,4 +1,4 @@
-## [TICKET_ID](https://waveaccounting.atlassian.net/browse/TICKET_ID)
+## Internal Ticket: 
 
 ### Notes
 
@@ -7,7 +7,7 @@
 ### Testing
 
 * Run `make alpha scope=<major|minor|patch>` to tag and publish an alpha version
-* Update the `version = "..."` of your module usage in keller to your published alpha version (eg. `version = "v2.2.0-alpha.1+9f2630a"`)
+* Update the `version = "..."` of your module usage to your published alpha version (eg. `version = "v2.2.0-alpha.1+9f2630a"`)
 * Run `make plan` in the keller terraform workspace
 
 ### Checklist
