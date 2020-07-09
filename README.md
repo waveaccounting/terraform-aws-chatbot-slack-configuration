@@ -1,3 +1,7 @@
+## Description
+
+This module is a bit of a hack around the fact that AWS Chatbot managed to launch **without** API support (which means no native Terraform support) but does support configuration via Cloudformation. Behind the scenes this module is launching a Cloudformation stack on your behalf and managing things that way.
+
 ## Usage
 
 ### Basic Configuration
@@ -17,7 +21,7 @@ module "chatbot_slack_configuration" {
   ]
 
   tags = {
-    Automation     = "Terraform + Cloudformation"
+    Automation = "Terraform + Cloudformation"
   }
 }
 ```
@@ -40,7 +44,7 @@ module "chatbot_slack_configuration" {
   ]
 
   tags = {
-    Automation     = "Terraform + Cloudformation"
+    Automation = "Terraform + Cloudformation"
   }
 }
 ```
