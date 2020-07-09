@@ -34,3 +34,8 @@ Resources:
       SlackChannelId: !Ref SlackChannelIdParameter
       SlackWorkspaceId: !Ref SlackWorkspaceIdParameter
       SnsTopicArns: !Ref SnsTopicArnsParameter
+
+Outputs:
+  ConfigurationArn:
+    Description: The ARN of the Chatbot Slack configuration
+    Value: !Ref SlackChannelConfiguration
