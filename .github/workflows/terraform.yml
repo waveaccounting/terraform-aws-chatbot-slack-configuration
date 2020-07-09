@@ -15,3 +15,13 @@ jobs:
           tf_actions_subcommand: "fmt"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  checkov:
+    runs-on: ubuntu-latest
+    name: checkov-action
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Run Checkov action
+        id: checkov
+        uses: bridgecrewio/checkov-action@v9
