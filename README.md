@@ -7,22 +7,39 @@ This module is a bit of a hack around the fact that AWS Chatbot managed to launc
 ### Basic Configuration
 
 ```hcl
+locals {
+  chatbot_logging_level      = "INFO"
+  chatbot_slack_workspace_id = "T024F6QTP"
+
+  chatbot_tags = {
+    Automation     = "Terraform + Cloudformation"
+    Terraform      = true
+    Cloudformation = true
+  }
+}
+
+data "aws_iam_role" "chatbot" {
+  name = "Wave__AwsChatBot"
+}
+
+data "aws_sns_topic" "serverless_sumologic_convox_scylla_pipeline_notifications" {
+  name = "serverless-sumologic-convox-scylla-pipeline-notifications"
+}
+
 module "chatbot_slack_configuration" {
   source  = "waveaccounting/chatbot-slack-configuration/aws"
   version = "1.0.0"
 
   configuration_name = "config-name"
-  iam_role_arn       = "arn:aws:iam::1234567890:role/service-role/AwsChatBot"
+  iam_role_arn       = data.aws_iam_role.chatbot.arn
   slack_channel_id   = "ABCDEADF"
-  slack_workspace_id = "I342UFDS"
+  slack_workspace_id = local.chatbot_slack_workspace_id
 
   sns_topic_arns = [
-    "arn:aws:sns:us-west-1:1234567890:pipeline-notifications"
+    data.aws_sns_topic.serverless_sumologic_convox_scylla_pipeline_notifications.arn,
   ]
 
-  tags = {
-    Automation = "Terraform + Cloudformation"
-  }
+  tags = local.chatbot_tags
 }
 ```
 
@@ -34,18 +51,16 @@ module "chatbot_slack_configuration" {
   version = "1.0.0"
 
   configuration_name = "config-name"
-  iam_role_arn       = "arn:aws:iam::1234567890:role/service-role/AwsChatBot"
-  logging_level      = "INFO"
+  iam_role_arn       = data.aws_iam_role.chatbot.arn
+  logging_level      = local.chatbot_logging_level
   slack_channel_id   = "ABCDEADF"
-  slack_workspace_id = "I342UFDS"
+  slack_workspace_id = local.chatbot_slack_workspace_id
 
   sns_topic_arns = [
-    "arn:aws:sns:us-west-1:1234567890:pipeline-notifications"
+    data.aws_sns_topic.serverless_sumologic_convox_scylla_pipeline_notifications.arn,
   ]
 
-  tags = {
-    Automation = "Terraform + Cloudformation"
-  }
+  tags = local.chatbot_tags
 }
 ```
 
