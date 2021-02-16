@@ -39,7 +39,7 @@ module "chatbot_slack_configuration" {
     data.aws_sns_topic.serverless_sumologic_convox_scylla_pipeline_notifications.arn,
   ]
 
-  tags = tags = local.chatbot_tags
+  tags = local.chatbot_tags
 }
 ```
 
@@ -57,12 +57,10 @@ module "chatbot_slack_configuration" {
   slack_workspace_id = local.chatbot_slack_workspace_id
 
   sns_topic_arns = [
-    "arn:aws:sns:us-west-1:1234567890:pipeline-notifications"
+    data.aws_sns_topic.serverless_sumologic_convox_scylla_pipeline_notifications.arn,
   ]
 
-  tags = {
-    Automation = "Terraform + Cloudformation"
-  }
+  tags = local.chatbot_tags
 }
 ```
 
