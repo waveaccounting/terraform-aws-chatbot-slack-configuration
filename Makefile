@@ -1,5 +1,5 @@
 scope := minor
-main_branch_name := master
+main_branch_name := $(shell git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@")
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
@@ -53,7 +53,7 @@ clean-alpha:  ## deletes all alpha versions and tags
 get-release:  ## args: scope - get the next release tag with scope `scope`
 	@semtag final -s ${scope} -f -o
 
-publish:  ## args: scope - publish the next release tag with scope `scope`. Must be on master branch.
+publish:  ## args: scope - publish the next release tag with scope `scope`. Must be on main branch.
 	@git checkout ${main_branch_name}; \
 	git pull; \
 	echo "About to create tag $(shell semtag final -s ${scope} -o)"; \
@@ -66,7 +66,7 @@ publish:  ## args: scope - publish the next release tag with scope `scope`. Must
 changelog:  ## args: scope - prefill a changelog update
 	@cp CHANGELOG.md CHANGELOG.md.tmp
 	@nexttag="$(shell semtag final -s ${scope} -f -o)"; \
-	prefill=$$(git-chglog -p '^[vV]?\d+\.\d+\.\d+$$' --next-tag $${nexttag} $${nexttag}); \
+	prefill=$$(git-chglog --tag-filter-pattern '^[vV]?\d+\.\d+\.\d+$$' --next-tag $${nexttag} $${nexttag}); \
 	( \
 		( \
 			`# print out from existing changelog up to the '[Unreleased]' heading` \
@@ -79,7 +79,7 @@ changelog:  ## args: scope - prefill a changelog update
 		`# don't include old changelog links` \
 		awk '/^\[[Uu]nreleased\]: https:\/\/github.com/ {exit} {print}'; \
 		`# write new changelog links` \
-		git-chglog -p '^[vV]?\d+\.\d+\.\d+$$' --next-tag $${nexttag} -c .chglog/config_links.yml \
+		git-chglog --tag-filter-pattern '^[vV]?\d+\.\d+\.\d+$$' --next-tag $${nexttag} -c .chglog/config_links.yml \
 	) | cat -s > CHANGELOG.md; \
 	rm -f CHANGELOG.md.tmp; \
 	echo "Changelog has been prefilled for version $${nexttag}. Please check and modify as necessary."
