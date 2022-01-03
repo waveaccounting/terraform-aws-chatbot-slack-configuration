@@ -9,7 +9,7 @@ resource "aws_cloudformation_stack" "chatbot_slack_configuration" {
 
   parameters = {
     ConfigurationNameParameter = var.configuration_name
-    GuardrailPoliciesParameter = var.guardrail_policies
+    GuardrailPoliciesParameter = join(",", var.guardrail_policies)
     IamRoleArnParameter        = var.iam_role_arn
     LoggingLevelParameter      = var.logging_level
     SlackChannelIdParameter    = var.slack_channel_id
