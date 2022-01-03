@@ -2,9 +2,10 @@ variable "configuration_name" {
   description = "The name of the configuration."
 }
 
-variable "guardrail_policy_arn" {
-  description = "The ARN of IAM policy that is applied as channel guardrails. The AWS managed 'AdministratorAccess' policy is applied as a default if this is not set."
-  default     = ""
+variable "guardrail_policies" {
+  description = "The list of IAM policy ARNs that are applied as channel guardrails. The AWS managed 'AdministratorAccess' policy is applied as a default if this is not set."
+  type        = list(string)
+  default     = []
 }
 
 variable "iam_role_arn" {
