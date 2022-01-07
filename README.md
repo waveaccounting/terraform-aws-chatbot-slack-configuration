@@ -28,7 +28,7 @@ data "aws_sns_topic" "serverless_sumologic_convox_scylla_pipeline_notifications"
 
 module "chatbot_slack_configuration" {
   source  = "waveaccounting/chatbot-slack-configuration/aws"
-  version = "1.0.0"
+  version = "1.1.0"
 
   configuration_name = "config-name"
   iam_role_arn       = data.aws_iam_role.chatbot.arn
@@ -48,13 +48,37 @@ module "chatbot_slack_configuration" {
 ```hcl
 module "chatbot_slack_configuration" {
   source  = "waveaccounting/chatbot-slack-configuration/aws"
-  version = "1.0.0"
+  version = "1.1.0"
 
   configuration_name = "config-name"
   iam_role_arn       = data.aws_iam_role.chatbot.arn
   logging_level      = local.chatbot_logging_level
   slack_channel_id   = "ABCDEADF"
   slack_workspace_id = local.chatbot_slack_workspace_id
+
+  sns_topic_arns = [
+    data.aws_sns_topic.serverless_sumologic_convox_scylla_pipeline_notifications.arn,
+  ]
+
+  tags = local.chatbot_tags
+}
+```
+
+### Configuring channel guardrails and user role required
+
+```hcl
+module "chatbot_slack_configuration" {
+  source  = "waveaccounting/chatbot-slack-configuration/aws"
+  version = "1.1.0"
+
+  configuration_name = "config-name"
+  iam_role_arn       = data.aws_iam_role.chatbot.arn
+  logging_level      = local.chatbot_logging_level
+  slack_channel_id   = "ABCDEADF"
+  slack_workspace_id = local.chatbot_slack_workspace_id
+
+  guardrail_policies = ["arn:aws:iam::aws:policy/ReadOnlyAccess"]
+  user_role_required = true
 
   sns_topic_arns = [
     data.aws_sns_topic.serverless_sumologic_convox_scylla_pipeline_notifications.arn,
