@@ -16,10 +16,18 @@ Types of changes:
 
 ## [Unreleased]
 
+## [v1.1.0] - 2022-01-07
+
+### Added
+
+- Added support for [Chatbot channel guardrail policies](https://docs.aws.amazon.com/chatbot/latest/adminguide/security-iam.html#channel-guardrails)
+- Added support for [Chatbot user role requirement](https://docs.aws.amazon.com/chatbot/latest/adminguide/security-iam.html#role-req)
+
 ## v1.0.0 - 2020-07-09
 
 ### Added
 - Initial release of the `chatbot-slack-configuration` module
 
-[Unreleased]: https://github.com/waveaccounting/terraform-aws-chatbot-slack-configuration/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/waveaccounting/terraform-aws-chatbot-slack-configuration/compare/v1.1.0...HEAD
+[v1.1.0]: https://github.com/waveaccounting/terraform-aws-chatbot-slack-configuration/compare/v1.0.0...v1.1.0
 [v1.0.0]: https://github.com/waveaccounting/terraform-aws-chatbot-slack-configuration/releases/tag/v1.0.0
