@@ -2,6 +2,12 @@ variable "configuration_name" {
   description = "The name of the configuration."
 }
 
+variable "guardrail_policies" {
+  type        = list(string)
+  default     = ["arn:aws:iam::aws:policy/AdministratorAccess"]
+  description = "The list of IAM policy ARNs that are applied as channel guardrails. The AWS managed 'AdministratorAccess' policy is applied as a default if this is not set."
+}
+
 variable "iam_role_arn" {
   description = "The ARN of the IAM role that defines the permissions for AWS Chatbot. This is a user-defined role that AWS Chatbot will assume. This is not the service-linked role. For more information, see [IAM Policies for AWS Chatbot](https://docs.aws.amazon.com/chatbot/latest/adminguide/chatbot-iam-policies.html)."
 }
@@ -28,4 +34,10 @@ variable "tags" {
   type        = map(string)
   default     = {}
   description = "Additional tags (e.g. `map('BusinessUnit','XYZ')`"
+}
+
+variable "user_role_required" {
+  type        = bool
+  default     = false
+  description = "Enables use of a user role requirement in your chat configuration."
 }
