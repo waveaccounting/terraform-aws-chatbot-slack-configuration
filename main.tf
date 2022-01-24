@@ -3,7 +3,7 @@ data "local_file" "cloudformation_template" {
 }
 
 resource "aws_cloudformation_stack" "chatbot_slack_configuration" {
-  name = "chatbot-slack-configuration-${var.configuration_name}"
+  name = "chatbot-slack-configuration-${replace(var.configuration_name, "_", "-")}"
 
   template_body = data.local_file.cloudformation_template.content
 
