@@ -41,3 +41,9 @@ variable "user_role_required" {
   default     = false
   description = "Enables use of a user role requirement in your chat configuration."
 }
+
+variable "create" {
+  type        = bool
+  default     = true
+  description = "Controls if AWS chatbot should be created."
+}

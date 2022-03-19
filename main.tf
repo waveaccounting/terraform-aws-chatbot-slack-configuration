@@ -3,6 +3,7 @@ data "local_file" "cloudformation_template" {
 }
 
 resource "aws_cloudformation_stack" "chatbot_slack_configuration" {
+  count = var.create ? 1 : 0
   name = "chatbot-slack-configuration-${var.configuration_name}"
 
   template_body = data.local_file.cloudformation_template.content
